@@ -41,18 +41,8 @@ class ResendOtp extends React.Component{
         }
     }
 
-    // shouldComponentUpdate(props){
-    //     console.log("prop",props.resend_otp_status)
-    //     if(props.resend_otp_status){
-    //                 this.setState({
-    //                     msg:true
-    //                 });
-    //                 this.props.history.push('/resend-email');
-    //             }
-    // }
-
     render(){
-        console.log(this.props.resend_otp_status);
+        
         return(
             <div>
                 <h2>Resend OTP</h2>

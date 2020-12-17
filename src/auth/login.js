@@ -29,7 +29,7 @@ class Login extends React.Component{
     }
     
     componentWillReceiveProps(props){ 
-        console.log(props.login_status);
+       
         if(props.login_status){
             this.props.history.push({
                 pathname:'/verify-phoneNumber',
@@ -39,7 +39,7 @@ class Login extends React.Component{
             this.setState({
                 msg:true
             })
-            // console.log(props.login_data);
+            
             this.props.history.push({
                 pathname:'/verify-phoneNumber',
             });
@@ -66,7 +66,7 @@ class Login extends React.Component{
     }
 }
 
-const getState = (state) => { console.log(state)
+const getState = (state) => {
     return {
         login_status:state.LoginComponent.status,
         login_data: state.LoginComponent.data

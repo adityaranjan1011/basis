@@ -32,7 +32,7 @@ class VerifyMobile extends React.Component{
     }
 
     componentWillReceiveProps(props){
-        console.group(props.otp_data);
+        // console.group(props.otp_data);
         if(!props.otp_data.success){
 
             if(props.otp_data.messageObj.wrongOtpCount >=3){
@@ -54,8 +54,8 @@ class VerifyMobile extends React.Component{
                 <div className="input-container">
                 <form onSubmit={this.handleSubmit}>
                     <div>
-                <input className="input-box" type="number" maxLength="10" name="phoneNumber" placeholder="Enter PhoneNumber" onChange={ e => this.handleChnage(e) } />
-                <input className="input-box" type="number" name="verificationCode" placeholder="Enter OTP" maxLength="4" pattern="^\d{4}$" onChange={ e => this.handleChnage(e) } required />
+                <input className="input-box" type="text" maxLength="10" name="phoneNumber" placeholder="Enter PhoneNumber" onChange={ e => this.handleChnage(e) } />
+                <input className="input-box" type="text" name="verificationCode" placeholder="Enter OTP" maxLength="4" pattern="^\d{4}$" onChange={ e => this.handleChnage(e) } required />
                 </div>
                 <Button variant="contained" color="primary" type="submit" onClick={this.handleSubmit}>
                             Verify
@@ -66,7 +66,7 @@ class VerifyMobile extends React.Component{
         )
     }
 }
-const getState = (state) => { console.log(state)
+const getState = (state) => { 
     return{
         otp_status:state.verifyOTP.status,
         otp_data:state.verifyOTP.data

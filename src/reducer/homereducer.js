@@ -1,4 +1,4 @@
-export const LoginComponent = (state = {status : null,data:null} , action) => {console.log(action);
+export const LoginComponent = (state = {status : null,data:null} , action) => {
     if(action.type === 'login-success')
         return {...state, status:action.payload.results.isLogin,data:action.payload}
     else if(action.type === 'login-error')
@@ -17,7 +17,7 @@ export const LoginComponent = (state = {status : null,data:null} , action) => {c
       return state;
    }
 
-   export const verifyOTP = (state = {status : null,data:null} , action) => { console.log(action);
+   export const verifyOTP = (state = {status : null,data:null} , action) => { 
     if(action.type === 'otp-success')
         return {...state, status:action.payload.results.isLogin,
         data:action.payload}

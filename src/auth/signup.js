@@ -28,7 +28,7 @@ class SignUp extends React.Component{
 
     }
     handleSubmit = e => {
-        console.log(this.state);
+        // console.log(this.state);
         const tokenId = localStorage.getItem('token');
         const data ={
             firstName:this.state.firstName,
@@ -79,7 +79,7 @@ class SignUp extends React.Component{
         )
     }
 }
-const getState = state => {console.log(state)
+const getState = state => {
     return{
         signUp_status: state.UserSignUpComponent.status,
         signUp_data:state.UserSignUpComponent.data

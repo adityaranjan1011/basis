@@ -2,7 +2,7 @@ import api from './api'
 
 export const LoginComponent = (data) => async dispatch =>{
     const response = await api.post('/users/phone', data);
-    console.log(response.data);
+    // console.log(response.data);
     localStorage.setItem('token',response.data.results.token);
     if(!response.data.results.isLogin){       
       dispatch({type:'login-error', payload:response.data});
@@ -13,7 +13,7 @@ export const LoginComponent = (data) => async dispatch =>{
 
 export const UserSignUpComponent = (data) => async dispatch =>{
   const response = await api.post('/users', data);
-  console.log(response.data);
+  // console.log(response.data);
   if(!response.data.success){       
     dispatch({type:'userSignup-error', payload:response.data});
   } else { 
@@ -25,7 +25,7 @@ export const UserSignUpComponent = (data) => async dispatch =>{
 
 export const verifyOTP = (data) => async dispatch =>{
   const response = await api.post('/users/phone/verify', data);
-  console.log(response.data);
+  // console.log(response.data);
   if(!response.data.success){       
     dispatch({type:'otp-error', payload:response.data});
   } else { 
@@ -37,7 +37,7 @@ export const verifyOTP = (data) => async dispatch =>{
 
 export const verifyEmail = (data) => async dispatch =>{
   const response = await api.post('/users/email', data);
-  console.log(response.data);
+  // console.log(response.data);
   if(!response.data.success){       
     dispatch({type:'email-error', payload:response.data});
   } else { 
@@ -49,7 +49,7 @@ export const verifyEmail = (data) => async dispatch =>{
 
 export const verifyEmailLink = (data) => async dispatch =>{
   const response = await api.post('/users/email/verify', data);
-  console.log(response.data);
+  // console.log(response.data);
   if(!response.data.success){       
     dispatch({type:'email-link-error', payload:response.data});
   } else { 
@@ -61,7 +61,7 @@ export const verifyEmailLink = (data) => async dispatch =>{
 
 export const resendOTP = (data) => async dispatch =>{
   const response = await api.put('/users/otp/resend', data);
-  console.log(response.data);
+  // console.log(response.data);
   if(!response.data.success){       
     dispatch({type:'resend_otp-error', payload:response.data});
   } else { 
@@ -73,7 +73,7 @@ export const resendOTP = (data) => async dispatch =>{
 
 export const resendVerifyEmail = (data) => async dispatch =>{
   const response = await api.put('/users/token/resendtoken', data);
-  console.log(response.data);
+  // console.log(response.data);
   if(!response.data.success){       
     dispatch({type:'resend-email-token-error', payload:response.data});
   } else { 
@@ -86,7 +86,7 @@ export const logOut = () => async dispatch =>{
   const user_id = sessionStorage.getItem('userId');
   // console.log;ongotpointercapture(user_id)
   const response = await api.delete('/users/logout/'+user_id );
-  console.log(response.data);
+  // console.log(response.data);
   if(!response.data.success){       
     dispatch({type:'logout-error', payload:response.data});
   } else { 

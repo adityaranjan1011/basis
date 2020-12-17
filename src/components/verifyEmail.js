@@ -41,7 +41,7 @@ class VerifyEmail extends React.Component{
      e.preventDefault();
     }
 
-    componentWillReceiveProps(props){ console.log(props.email_status)
+    componentWillReceiveProps(props){ 
         if(props.email_status){
             this.setState({
                 msg:true
@@ -70,7 +70,7 @@ class VerifyEmail extends React.Component{
         )
     }
 }
-const getState = (state) => {console.log(state);
+const getState = (state) => {
     return{
         email_status:state.verifyEmail.status,
         // email_link__status : state.verifyEmailLink.status

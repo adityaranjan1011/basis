@@ -38,7 +38,7 @@ class ResendVerifyEmail extends React.Component{
     }
 
     componentWillReceiveProps(props){
-        console.log("com",props.resend_email__status)
+       
         if(props.resend_email__status){
             this.setState({
                 msg:true
@@ -46,7 +46,7 @@ class ResendVerifyEmail extends React.Component{
             this.props.history.push('/signup-page');
         }
     }
-    render(){  console.log("com",this.props.resend_email__status);
+    render(){  
         return(
             <div>
                 <h2>Resend Email</h2>
@@ -65,7 +65,7 @@ class ResendVerifyEmail extends React.Component{
         )
     }
 }
-const getState = (state) => {console.log(state)
+const getState = (state) => {
     return{
             resend_email__status : state.resendVerifyEmail.status
         }

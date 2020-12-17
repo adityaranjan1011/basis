@@ -2,7 +2,7 @@ import React from 'react';
 import {verifyOTP,logOut,UserSignUpComponent} from '../action/homeaction'
 
 import {connect} from 'react-redux';
-
+// import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 
 class ProfilePage extends React.Component{
@@ -15,18 +15,20 @@ class ProfilePage extends React.Component{
             lastName:'',
             phoneNumebr:'',
             email:'',
+            disabled:false,
+            isEdit:false
             
         }
     }
 
     
     componentDidMount(props){
-        console.log(this.props);
+        // console.log(this.props);
         if(this.props.user_data){
         if(this.props.user_data.results.isLogin){
-            console.log("adi")
+            // console.log("adi")
             var data = this.props.user_data.results.user;
-            // localStorage.setItem('user_data',JSON.stringify(data))
+           
             this.setState({
                 firstName:data.firstName,
                 lastName:data.lastName,
@@ -39,7 +41,7 @@ class ProfilePage extends React.Component{
 
         if(this.props.signUp_data ){
             var data2 = this.props.signUp_data.results.user;
-            // localStorage.setItem('user_data',JSON.stringify(data2))
+            
             this.setState({
                 firstName:data2.firstName,
                 lastName:data2.lastName,
@@ -59,13 +61,24 @@ class ProfilePage extends React.Component{
             })
         }
         handleLogOut = () =>{
-            console.log("Log out",);
+           
             sessionStorage.removeItem('token');
-            this.props.history.push('/');
+            setTimeout(() => {
+                this.props.history.push('/');
+            },100)
+           
             this.props.logOut();
         }
+        handleClick =() => {
+            this.setState({
+                disabled:true
+            })
+        }
         handleSubmit = (e) => {
-            console.log(this.state);
+           
+            // this.setState({
+            //     disabled:true
+            // })
             // const tokenId = localStorage.getItem('token');
             // const data ={
             //     firstName:this.state.firstName,
@@ -87,18 +100,6 @@ class ProfilePage extends React.Component{
             }
         }
 
-        // componentWillUpdate(){
-        //     const userData = localStorage.getItem('user_data') ;
-        //     if(userData){
-        //         this.setState({
-        //             firstName:userData.firstName,
-        //             lastName:userData.lastName,
-        //             email:userData.email,
-        //             phoneNumber:userData.phoneNumber,
-        //             profilePic:userData.avatar
-        //         })
-        //     }
-        // }
     render(){      
         return(            
             <div>
@@ -111,15 +112,17 @@ class ProfilePage extends React.Component{
                <div className="profile-container">
                    <img className="profile-pic" src={this.state.profilePic} alt="ProfilePic" />
                    <form onSubmit={this.handleSubmit}>                  
-                   <div>
-                   <input className="input-box" type="text" name="firstName" placeholder="First Name" onChange={e=>this.handleChange(e)}  value={this.state.firstName} />
-                    <input className="input-box" type="text" name="lastName" placeholder="Last Name" onChange={e=>this.handleChange(e)}  value={this.state.lastName} />
-                    <input className="input-box" type="text" name="email" placeholder="Email" onChange={e=>this.handleChange(e)}  value={this.state.email} />
-                    <input className="input-box" type="text" name="phoneNumber" placeholder="Phone Number" onChange={e=>this.handleChange(e)}  value={this.state.phoneNumber} />
+                   <div >
+                   <input className="input-box" type="text" name="firstName" placeholder="First Name" onChange={e=>this.handleChange(e)}  value={this.state.firstName} disabled = {(this.state.disabled)? "" : "disabled"}/>
+                    <input className="input-box" type="text" name="lastName" placeholder="Last Name" onChange={e=>this.handleChange(e)}  value={this.state.lastName} disabled = {(this.state.disabled)? "" : "disabled"}/>
+                    <input className="input-box" type="text" name="email" placeholder="Email" onChange={e=>this.handleChange(e)}  value={this.state.email} disabled={(this.state.disabled)? "" : "disabled"}/>
+                    <input className="input-box" type="text" name="phoneNumber" placeholder="Phone Number" onChange={e=>this.handleChange(e)}  value={this.state.phoneNumber} disabled={(this.state.disabled)? "" : "disabled"}/>
                    </div>
-                   <Button variant="contained" color="primary" type="submit" >
-                            Edit
-                            </Button>
+                   {this.state.disabled?
+                   <Button variant="contained" color="primary" type="submit"> Save Changes </Button> :
+                   <Button variant="contained" color="primary" onClick={this.handleClick} type="submit"> Edit </Button> }
+                           
+                            
                     </form>
                </div>
             </div>
