@@ -1,6 +1,6 @@
 import React from 'react';
 import {LoginComponent} from '../action/homeaction'
-
+import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux';
 
 class Login extends React.Component{
@@ -9,7 +9,8 @@ class Login extends React.Component{
         this.state={
             phoneNumber:"",
             msg:false,
-            otp:''
+            otp:'',
+            userId:''
         }
     }
 
@@ -20,36 +21,45 @@ class Login extends React.Component{
         })
     }
     handleSubmit = e => {
-        console.log(this.state.phoneNumber)
+        // console.log(this.state.phoneNumber)
         const data = {
            phoneNumber:this.state.phoneNumber
         }
         this.props.LoginComponent(data);
     }
-
-    componentWillReceiveProps(props){
-        if(!props.LoginComponent.status){
-            this.props.history.push('/signup-page');
+    
+    componentWillReceiveProps(props){ 
+        console.log(props.login_status);
+        if(props.login_status){
+            this.props.history.push({
+                pathname:'/verify-phoneNumber',
+            });
         }
         else{
             this.setState({
                 msg:true
             })
+            // console.log(props.login_data);
+            this.props.history.push({
+                pathname:'/verify-phoneNumber',
+            });
         }
     }
+    
     render(){
             // const veriOtp = this.props.LoginComponent.status;
         return(
             <div className="login-page">
-                <h2>Login Herer</h2>
-                <div className="container">
-                    <input type='text' name='phonenumber' placeholder="Enter Phone Number" onChange={this.handleChange}/>
-                     {/* <input type='text' name='otp' placeholder="Enter OTP" onChange={this.handleChange}/> */}
-                    
-                   
-                        {/* <button type="submit" onClick={this.handleSubmit}>Verify OTP</button> : */}
-                       <button type="submit" onClick={this.handleSubmit}>Continue</button>
-                   
+                <h2>Login Here</h2>
+                <div className="input-container">
+                    <div className="input-mobile">                       
+                    <input className="input-box" type="text" name='phonenumber' maxLength="10" placeholder="Enter Phone Number" onChange={this.handleChange}/>
+                    </div>
+                   <div>
+                     <Button variant="contained" color="primary" type="submit" onClick={this.handleSubmit}>
+                            Continue
+                            </Button>
+                            </div>                   
                 </div>
             </div>
         )

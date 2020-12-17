@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  align-items: center;
+  /* background-color:blue; */
 }
 
 .App-logo {
@@ -35,4 +37,69 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.login-page {
+  height: calc(100vh - 50px);
+  /* background-color: blue; */
+  text-align: center;
+}
+h2 {
+  margin-top: 0px;
+  padding-top: 20px;
+}
+.input-container,.signup-container,.profile-container {
+  /* margin-top: 30px; */
+  background-color: #36c182;
+  padding: 40px;
+  margin-top: 30px;
+  height: 200px;
+  width: 400px;
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+.input-box{
+  margin: 10px auto;
+    height: 40px;
+    width: 300px;
+    font-size: 16px;
+    padding-left: 10px;
+}
+.input-mobile{
+  margin: auto;
+}
+
+.MuiButton-containedPrimary {
+  margin: 0px auto !important;
+  margin-top: 30px !important;
+}
+
+.signup-container,.profile-container{
+ height: calc(100vh - 200px);
+
+}
+.container-page{
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-header{
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: auto;
+}
+p{
+  cursor: pointer;
+  line-height: 2;
+}
+.profile-pic{
+  height: 50px;
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
 }

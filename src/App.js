@@ -7,6 +7,8 @@ import VerifyMobile from './components/verifyMobile';
 import VerifyEmail from './components/verifyEmail';
 import ResendOtp from './components/resendOtp';
 import ResendVerifyEmail  from './components/resendEmail';
+import ProfilePage from './components/profilePage';
+import emailVerification from './components/emailVerification';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route exact path = "/verify-email" component= {VerifyEmail} />
         <Route exact path = "/resend-otp" component={ResendOtp} />
         <Route exact path = "/resend-email" component={ResendVerifyEmail} />
+        <Route exact path = '/profile-page' component={ProfilePage} />
+        <Route exact path = '/email-verification' component={emailVerification} />
       </Router> 
     </div>
   );

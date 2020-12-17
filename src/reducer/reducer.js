@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 // import { combineReducers } from 'redux';
 
-import {LoginComponent,UserSignUpComponent,verifyOTP,verifyEmail,verifyEmailLink,resendOTP,resendVerifyEmail} from './homereducer';
+import {LoginComponent,UserSignUpComponent,verifyOTP,verifyEmail,verifyEmailLink,resendOTP,resendVerifyEmail,logOut} from './homereducer';
 
 
 export default combineReducers({
@@ -12,5 +12,6 @@ export default combineReducers({
     verifyEmail :verifyEmail,
     verifyEmailLink : verifyEmailLink,
     resendOTP: resendOTP,
-    resendVerifyEmail:resendVerifyEmail
+    resendVerifyEmail:resendVerifyEmail,
+    logOut:logOut
 })

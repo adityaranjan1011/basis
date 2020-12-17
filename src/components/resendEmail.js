@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {resendVerifyEmail} from '../action/homeaction';
+import Button from '@material-ui/core/Button';
+
 
 
 class ResendVerifyEmail extends React.Component{
@@ -36,29 +38,36 @@ class ResendVerifyEmail extends React.Component{
     }
 
     componentWillReceiveProps(props){
-        if(props.email_status && props.email_link__status){
+        console.log("com",props.resend_email__status)
+        if(props.resend_email__status){
             this.setState({
                 msg:true
             });
             this.props.history.push('/signup-page');
         }
     }
-    render(){
+    render(){  console.log("com",this.props.resend_email__status);
         return(
             <div>
+                <h2>Resend Email</h2>
+                <div className="input-container">
+                
                 <form onSubmit={this.handleSubmit}>
-                {/* <input type="text" name="phoneNumber" placeholder="Enter PhoneNumber" onChange={e => this.handleChnage(e)} /> */}
-                <input type="text" name="email" placeholder="Enter email" onChange={e => this.handleChnage(e)} />
-                <button type="submit" >Resend Email Verify</button>
+              <div >
+                <input className="input-box" type="text" name="email" placeholder="Enter email" onChange={e => this.handleChnage(e)} />
+                </div>
+                <Button variant="contained" color="primary" type="submit" onClick={this.handleSubmit}>
+                           Resend 
+                            </Button>
                 </form>
+                </div>
             </div>
         )
     }
 }
-const getState = (state) => {
+const getState = (state) => {console.log(state)
     return{
-        // email_status:state.verifyEmail.status,
-        email_link__status : state.resendVerifyEmail.status
+            resend_email__status : state.resendVerifyEmail.status
         }
 }
 export default connect(getState,{resendVerifyEmail})(ResendVerifyEmail);

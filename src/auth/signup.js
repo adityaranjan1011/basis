@@ -1,6 +1,7 @@
 import React from 'react';
 import {UserSignUpComponent} from '../action/homeaction';
 import {connect} from 'react-redux'
+import Button from '@material-ui/core/Button';
 
 class SignUp extends React.Component{
 
@@ -48,35 +49,40 @@ class SignUp extends React.Component{
             this.setState({
                 msg:true
             })
-            this.props.history.push('/verify-phoneNumber');
+            this.props.history.push('/profile-page');
         }
     }
 
     render(){
         return(
-            <div>
+            <div className="signup-page">
                 <h2>SignUp Here</h2>
                 
-                <div className="container" >
-                    <form onSubmit={this.handleSubmit} >
-
+                <div className="signup-container" >
+                    <form className="container-page" onSubmit={this.handleSubmit} >
+                    <div> 
+                    <input className="input-box" type="text" name="firstName" placeholder="First Name" onChange={e=>this.handleChange(e)}  value={this.state.firstName} />
+                    <input className="input-box" type="text" name="lastName" placeholder="Last Name" onChange={e=>this.handleChange(e)}  value={this.state.lastName} />
+                    <input className="input-box" type="text" name="email" placeholder="Email" onChange={e=>this.handleChange(e)}  value={this.state.email} />
+                    <input className="input-box" type="text" name="phoneNumber" placeholder="Phone Number" onChange={e=>this.handleChange(e)}  value={this.state.phoneNumber} />
+                    <input className="input-box" type="text" name="referredCodeKey" placeholder="Referral Code Key" onChange={e=>this.handleChange(e)}  value={this.state.referredCodeKey} />
+                    </div>
                   
-                    <input type="text" name="firstName" placeholder="First Name" onChange={e=>this.handleChange(e)}  value={this.state.firstName} />
-                    <input type="text" name="lastName" placeholder="First Name" onChange={e=>this.handleChange(e)}  value={this.state.lastName} />
-                    <input type="text" name="email" placeholder="First Name" onChange={e=>this.handleChange(e)}  value={this.state.email} />
-                    <input type="text" name="phoneNumber" placeholder="First Name" onChange={e=>this.handleChange(e)}  value={this.state.phoneNumber} />
-                    <input type="text" name="referredCodeKey" placeholder="First Name" onChange={e=>this.handleChange(e)}  value={this.state.referredCodeKey} />
+                    
                     {/* <input type="text" name="firstName" placeholder="First Name" onChange={e=>this.handleChange(e)}  value={this.state.firstName} /> */}
-                    <button type="submit" >submit</button>
+                    <Button variant="contained" color="primary" type="submit" onClick={this.handleSubmit}>
+                            submit
+                            </Button>
                     </form>
                 </div>
             </div>
         )
     }
 }
-const getState = state => {
+const getState = state => {console.log(state)
     return{
         signUp_status: state.UserSignUpComponent.status,
+        signUp_data:state.UserSignUpComponent.data
     }
 }
 export default connect(getState,{UserSignUpComponent})(SignUp);

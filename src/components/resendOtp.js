@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {resendOTP} from '../action/homeaction';
-
+import Button from '@material-ui/core/Button';
 
 class ResendOtp extends React.Component{
 
@@ -16,7 +16,7 @@ class ResendOtp extends React.Component{
 
     handleChnage = e => {
         this.setState({
-            [e.target.name] : e.target.value
+            phoneNumber: e.target.value
         })
     }
 
@@ -32,6 +32,7 @@ class ResendOtp extends React.Component{
     }
 
     componentWillReceiveProps(props){
+        // console.log("compon")
         if(props.resend_otp_status){
             this.setState({
                 msg:true
@@ -40,19 +41,36 @@ class ResendOtp extends React.Component{
         }
     }
 
+    // shouldComponentUpdate(props){
+    //     console.log("prop",props.resend_otp_status)
+    //     if(props.resend_otp_status){
+    //                 this.setState({
+    //                     msg:true
+    //                 });
+    //                 this.props.history.push('/resend-email');
+    //             }
+    // }
+
     render(){
         console.log(this.props.resend_otp_status);
         return(
             <div>
+                <h2>Resend OTP</h2>
+                <div className="input-container">               
                 <form onSubmit={this.handleSubmit}>
-                <input type="text" name="phoneNumber" placeholder="Enter PhoneNumber" onChange={e => this.handleChnage(e)} />
-                <button type="submit" >Resend OTP</button>
+                    <div>
+                <input className="input-box" type="text" name="phoneNumber" placeholder="Enter PhoneNumber" onChange={e => this.handleChnage(e)} />
+                </div>
+                <Button variant="contained" color="primary" type="submit" onClick={this.handleSubmit}>
+                           Resend
+                            </Button>
                 </form>
+                </div>
             </div>
         )
     }
 }
-const getState = (state) => { console.log(state)
+const getState = (state) => { 
     return{
         resend_otp_status:state.resendOTP.status
     }

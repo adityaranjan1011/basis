@@ -63,11 +63,11 @@ export const resendOTP = (data) => async dispatch =>{
   const response = await api.put('/users/otp/resend', data);
   console.log(response.data);
   if(!response.data.success){       
-    dispatch({type:'otp-error', payload:response.data});
+    dispatch({type:'resend_otp-error', payload:response.data});
   } else { 
   //   localStorage.setItem('token',response.data.user.login_token); 
   //   localStorage.setItem('user_data',response.data.user);  
-    dispatch({type:'otp-success', payload:response.data});
+    dispatch({type:'resend_otp-success', payload:response.data});
   }
 } 
 
@@ -75,10 +75,22 @@ export const resendVerifyEmail = (data) => async dispatch =>{
   const response = await api.put('/users/token/resendtoken', data);
   console.log(response.data);
   if(!response.data.success){       
-    dispatch({type:'token-error', payload:response.data});
+    dispatch({type:'resend-email-token-error', payload:response.data});
   } else { 
   //   localStorage.setItem('token',response.data.user.login_token); 
   //   localStorage.setItem('user_data',response.data.user);  
-    dispatch({type:'token-success', payload:response.data});
+    dispatch({type:'resend-email-token-success', payload:response.data});
+  }
+} 
+export const logOut = () => async dispatch =>{
+  const user_id = sessionStorage.getItem('userId');
+  // console.log;ongotpointercapture(user_id)
+  const response = await api.delete('/users/logout/'+user_id );
+  console.log(response.data);
+  if(!response.data.success){       
+    dispatch({type:'logout-error', payload:response.data});
+  } else { 
+ 
+    dispatch({type:'logout-success', payload:response.data});
   }
 } 

@@ -8,10 +8,10 @@ class VerifyEmail extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            phoneNumber:'',
+            // phoneNumber:'',
             email:'',
             token:'',
-            // verificationToken: "112233",
+            verificationToken: "112233",
             msg:false
         }
     }
@@ -24,29 +24,29 @@ class VerifyEmail extends React.Component{
 
     handleSubmit = e => {
      const tokenId = localStorage.getItem('token');
-     const data = {
-         phoneNumber:this.state.phoneNumber,
-         email:this.state.email,
-         token:tokenId
-     }
-     this.props.verifyEmail(data);
-
-    //  const data2 = {
+    //  const data = {
+    //      phoneNumber:this.state.phoneNumber,
     //      email:this.state.email,
-    //      token:tokenId,
-    //      verificationToken:this.state.verificationToken
-    //  };
-    //  this.props.verifyEmailLink(data2);
+    //      token:tokenId
+    //  }
+    //  this.props.verifyEmail(data);
+
+     const data2 = {
+         email:this.state.email,
+         token:tokenId,
+         verificationToken:this.state.verificationToken
+     };
+     this.props.verifyEmailLink(data2);
 
      e.preventDefault();
     }
 
-    componentWillReceiveProps(props){ console.log(props.email_status)
-        if(props.email_status){
+    componentWillReceiveProps(props){
+        if(props.email_link__status){
             this.setState({
                 msg:true
             });
-            this.props.history.push('/email-verification');
+            this.props.history.push('/resend-otp');
         }
     }
     render(){
@@ -57,11 +57,11 @@ class VerifyEmail extends React.Component{
 
                 <form onSubmit={this.handleSubmit}>
                  <div>
-                <input className="input-box" type="text" name="phoneNumber" placeholder="Enter PhoneNumber" onChange={e => this.handleChnage(e)} />
                 <input className="input-box" type="text" name="email" placeholder="Enter email" onChange={e => this.handleChnage(e)} />
+                <input className="input-box" type="text" name="verificationToken" placeholder="Enter Email Verificatio Code" onChange={e => this.handleChnage(e)} />
                 </div>
-                <Button variant="contained" color="primary" type="submit" >
-                            Verify Email
+                <Button variant="contained" color="primary" type="submit">
+                            Verify Email Token
                             </Button>
                 </form>
 
@@ -70,10 +70,10 @@ class VerifyEmail extends React.Component{
         )
     }
 }
-const getState = (state) => {console.log(state);
+const getState = (state) => {
     return{
-        email_status:state.verifyEmail.status,
-        // email_link__status : state.verifyEmailLink.status
+        // email_status:state.verifyEmail.status,
+        email_link__status : state.verifyEmailLink.status
         }
 }
 export default connect(getState,{verifyEmail,verifyEmailLink})(VerifyEmail);
